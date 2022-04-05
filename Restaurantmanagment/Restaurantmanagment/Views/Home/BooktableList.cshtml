@@ -1,0 +1,63 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h5 class="h5 mb-2 text-gray-800">Table Book In Contact Page</h5>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> Table - Book  <button class="btn btn-primary float-right"> @Html.ActionLink("New Record", "Booktable", "Home", new { @class = "collapse-item", @style = "color:white;" }) </button> </h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Number</th>
+                            <th>Address</th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
+                    @if (Model.User_Booklist.Count > 0)
+                    {
+                        foreach (var item in Model.User_Booklist)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.name</td>
+                                <td>@item.email</td>
+                                <td>@item.phone</td>
+                                <td>@item.date</td>
+                                <td>@item.time</td>
+                                <td>@item.number</td>
+                                <td>@item.description</td>
+
+                                <td>
+                                    @Html.ActionLink("Edit", "BooktableUpdate", new { @id = item.id }, new { @class = "btn btn-primary btn-sm" })<br /> <br />
+                                    @Html.ActionLink("Delete", "Booktbledelete", "Home", new { @id = item.id }, new { @class = "btn btn-primary btn-sm"})
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

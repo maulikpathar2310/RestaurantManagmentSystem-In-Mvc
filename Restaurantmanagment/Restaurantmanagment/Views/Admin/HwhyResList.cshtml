@@ -1,0 +1,153 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h3 class="h3 mb-2 text-gray-800"> Home Page </h3>
+
+    <!-- Banner Section -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> Banner Section  <button class="btn btn-primary float-right"> @Html.ActionLink("New Record", "HBanCreate", "Admin", new { @class = "collapse-item", @style = "color:white;" }) </button> </h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> Image </th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
+                    @if (Model.Hbanner_list.Count > 0)
+                    {
+                        int i = 0;
+                        foreach (var item in Model.Hbanner_list)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                       @item.himage
+                                    </td>
+                                    <td>
+
+                                        @Html.ActionLink("Delete", "HBanDelete", new { @id = item.imgid }, new { @class = "btn btn-primary btn-sm" }) |
+                                        @Html.ActionLink("Download", "DownloadFile", new { @filename = item.himage }, new { @class = "btn btn-primary btn-sm" }) 
+                                    </td>
+                                </tr>
+                            </tbody>
+                            i++;
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Why Choose Us -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> Why choose us <button class="btn btn-primary float-right"> @Html.ActionLink("New Record", "HwhyResCreate", "Admin", new { @class = "collapse-item", @style = "color:white;" }) </button> </h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> Number </th>
+                            <th> Title </th>
+                            <th> Description </th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
+                    @if (Model.HwhyRes_list.Count > 0)
+                    {
+                        int i = 0;
+                        foreach (var item in Model.HwhyRes_list)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.wnumber </td>
+                                    <td>@item.wtitle </td>
+                                    <td>@item.wdescription</td>
+
+                                    <td>
+                                        @Html.ActionLink("Edit", "HwhyResUpdate", new { @id = item.wid }, new { @class = "btn btn-primary btn-sm" }) |
+                                        @Html.ActionLink("Delete", "HwhyResDelete", new { @id = item.wid }, new { @class = "btn btn-primary btn-sm" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                            i++;
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slider Section -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> Slider Section <button class="btn btn-primary float-right"> @Html.ActionLink("New Record", "HsliderCreate", "Admin", new { @class = "collapse-item", @style = "color:white;" }) </button> </h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> Image </th>
+                            <th> Title </th>
+                            <th> Price </th>
+                            <th> Description </th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
+                    @if (Model.Hslider_list.Count > 0)
+                    {
+                        int i = 0;
+                        foreach (var item in Model.Hslider_list)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <img src="~/assets/img/Homepage/Slider/@item.image" width="100" height="100" />
+                                    </td>
+                                    <td>@item.title </td>
+                                    <td>@item.price </td>
+                                    <td>@Html.Raw(item.description)</td>
+
+                                    <td>
+                                        @Html.ActionLink("Edit", "HsliderUpdate", new { @id = item.sid }, new { @class = "btn btn-primary btn-sm" }) <br /><br />
+                                        @Html.ActionLink("Delete", "HsliderDelete", new { @id = item.sid }, new { @class = "btn btn-primary btn-sm" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                            i++;
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

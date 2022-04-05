@@ -1,0 +1,67 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h4 class="h4 mb-2 text-gray-800">About Us page</h4><br />
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"> About Us <button class="btn btn-primary float-right"> @Html.ActionLink("New Record", "AboutCreate", "Admin", new { @class = "collapse-item", @style = "color:white;" }) </button>  </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th> id </th>
+                            <th> Image </th>
+                            <th> Name </th>
+                            <th> Role </th>
+                            <th> Fb link </th>
+                            <th> Insta link </th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
+                    @if (Model.About_list.Count > 0)
+                    {
+                        var i = 0;
+                        foreach (var item in Model.About_list)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@i  </td>
+                                    <td>
+                                        <img src="~/assets/img/About/@item.image" width="100" height="100" />
+                                    </td>
+                                    <td>@item.name</td>
+                                    <td>@item.role</td>
+                                    <td>@item.fb </td>
+                                    <td>@item.insta </td>
+
+                                    <td>
+                                        @Html.ActionLink("Edit", "AboutUpdate", new { @id = item.aid }, new { @class = "btn btn-primary btn-sm" })
+                                        <br /><br />
+                                        @Html.ActionLink("Delete", "AboutDelete", new { @id = item.aid }, new { @class = "btn btn-primary btn-sm" })
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                            i++;
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

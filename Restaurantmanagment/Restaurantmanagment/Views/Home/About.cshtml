@@ -1,0 +1,59 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Welcome to <span>Restaurantly</span></h1>
+                <h2>Delivering great food for more than 18 years!</h2>
+
+                <div class="btns">
+                    <a href="@Url.Action("Gujaratithali","Home")" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
+                    <a href="@Url.Action("Booktable","Home")" class="btn-book animated fadeInUp scrollto">Book a Table</a>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
+                <a href="https://www.youtube.com/watch?v=u6BOC7CDUTQ" class="glightbox play-btn"></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Hero -->
+
+<section id="chefs" class="chefs">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Chefs</h2>
+            <p>Our Proffesional Chefs</p>
+        </div>
+
+        <div class="row">
+
+            @foreach (var item in Model.About_list)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="~/assets/img/About/@item.image" class="img-fluid" alt="" />
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4> @item.name </h4>
+                                <span> @item.role </span>
+                            </div>
+                            <div class="social">
+                              
+                                <a href="@item.fb"><i class="bi bi-facebook"></i></a>
+                                <a href="@item.insta"><i class="bi bi-instagram"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }           
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,50 @@
+﻿@model Restaurantmanagment.Models.Entity.Panjabidish.Panjabidish
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+@using (Html.BeginForm("PanUpdate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section>
+        <div class="container">
+            <h4> <b> Panjabidish Edit </b></h4>
+            <hr>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.pid)
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Image </label>
+                <div class="col-sm-6">
+                    <img src="~/assets/@Model.image" width="50" height="50" />
+                    <input type="file" name="file" />
+                    @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Name </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Price </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </section>
+   
+}
+
+

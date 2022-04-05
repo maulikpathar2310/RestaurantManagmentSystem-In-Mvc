@@ -1,0 +1,241 @@
+﻿@model IEnumerable<Restaurantmanagment.Models.Entity.Cart.Items>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/assets/css/cart.css">
+
+
+@using (Html.BeginForm("OrderDataGet","Home",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid mt-5">
+        <h2 class="mb-2 text-center">Shopping Cart</h2>
+        <hr />
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table id="myTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>User Name </th>
+                                <th>Product</th>
+                                <th>Name</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th class="text-right">
+                                    <span id="amount" class="amount">Amount</span>
+                                </th>
+                                <th> Total </th>
+                                <th> Action </th>
+                            </tr>
+                        </thead>
+
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td> <input type="hidden" value="" /> @Session["email"] </td>
+
+                        <td>
+                            <div class="product-img">
+                                <div class="img-prdct">
+                                    <input type="hidden" id="img" />
+                                    <img class="img" src="/assets/@item.image">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="name"> @item.name </p>
+
+                        </td>
+                        <td>
+                            <div class="button-container">
+                                <button class="cart-qty-plus" type="button" value="+">+</button>
+                                <input type="text" name="qty" min="0" id="qty" class="qty form-control" value="0" />
+                                <button class="cart-qty-minus" type="button" value="-">-</button>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" value="@item.price" class="price form-control" disabled>
+                        </td>
+                        <td align="right">
+
+                            <span id="amount" class="amount">0</span>
+                        </td>
+                        <td align="right">
+                            <strong>
+
+                                TOTAL = $  <span id="total" class="total">0</span>
+                            </strong>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ExportPdf","Home")" class="btn btn-success btn-sm"> Expot Pdf </a>
+                        </td>
+                        
+                    </tr>
+                        }
+
+
+                    </table>
+
+                    <a href="@Url.Action("Gujaratithali", "Home")" class="btn btn-info btn-sm"> Continue Shoping </a>
+                    <a href="@Url.Action("OrderDataGet", "Home")" class="btn btn-success btn-sm" id="btnclk"> Orderd </a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+
+
+<script>
+    $(document).ready(function () {
+        update_amounts();
+        $('.qty, .price').on('keyup keypress blur change', function (e) {
+            update_amounts();
+        });
+    });
+
+    function update_amounts() {
+        var sum = 0.0;
+        $('#myTable > tbody  > tr').each(function () {
+            var qty = $(this).find('.qty').val();
+            var price = $(this).find('.price').val();
+            var amount = (qty * price)
+            sum += amount;
+            $(this).find('.amount').text('' + amount);
+        });
+        $('.total').text(sum);
+    }
+</script>
+
+<!-- /----------------for quantity-increment-or-decrement------- -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        var incrementQty;
+        var decrementQty;
+        var plusBtn = $(".cart-qty-plus");
+        var minusBtn = $(".cart-qty-minus");
+        var incrementQty = plusBtn.click(function () {
+            var $n = $(this)
+                .parent(".button-container")
+                .find(".qty");
+            $n.val(Number($n.val()));
+            update_amounts();
+        });
+
+        var decrementQty = minusBtn.click(function () {
+            var $n = $(this)
+                .parent(".button-container")
+                .find(".qty");
+            var QtyVal = Number($n.val());
+            if (QtyVal > 0) {
+                $n.val(QtyVal);
+            }
+            update_amounts();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        update_amounts();
+        $('.qty, .price').on('keyup keypress blur change', function (e) {
+            update_amounts();
+        });
+    });
+
+    function update_amounts() {
+
+        var sum = 0.0;
+        $('#myTable > tbody  > tr').each(function () {
+            var qty = $(this).find('.qty').val();
+            var price = $(this).find('.price').val();
+            var amount = (qty * price)
+            sum += amount;
+            $(this).find('.amount').text('' + amount);
+            $('#dishamount').val('' + amount);
+
+        });
+        $('.total').text(sum);
+        $('#dishtotal').val(sum);
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var incrementQty;
+        var decrementQty;
+        var plusBtn = $(".cart-qty-plus");
+        var minusBtn = $(".cart-qty-minus");
+        var incrementQty = plusBtn.click(function () {
+            var $n = $(this)
+                .parent(".button-container")
+                .find(".qty");
+            $n.val(Number($n.val()) + 1);
+            update_amounts();
+        });
+
+        var decrementQty = minusBtn.click(function () {
+            var $n = $(this)
+                .parent(".button-container")
+                .find(".qty");
+            var QtyVal = Number($n.val());
+            if (QtyVal > 0) {
+                $n.val(QtyVal - 1);
+            }
+            var data = update_amounts();
+        });
+    });
+</script>
+
+<script>
+        $(document).ready(function () {
+            $("#btnclk").click(function () {
+                debugger;
+                var customers = new Array();
+                
+                $('#myTable > tbody  > tr').each(function() {
+
+                    var myData = {};
+                    myData.uname = $(this).find('td:eq(0)').text();
+                    //myData.image = $(this).find('td:eq(1)').find('img').attr('src');
+                    myData.name = $(this).find('td:eq(2)').find('.name').text();
+                    myData.quantity = $(this).find('td:eq(3)').find('.qty').val();
+                    myData.price = $(this).find('td:eq(4)').find('.price').val();
+                    myData.amount = $(this).find('td:eq(5)').find('.amount').text();
+                    myData.total = $(this).find('td:eq(6)').find('.total').text();
+                    customers.push(myData);
+                });
+
+
+                $.ajax({
+                    url: '@Url.Action("OrderDataGet", "Home")',
+                    type: 'POST',
+                    data: JSON.stringify({ 'item': customers }),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType:'json',
+                    success: function (response) {
+                        alert("success");
+                    },
+                    error: function(status,error) {
+                        alert("error");
+                    }
+
+                });
+            });
+        });
+</script>
+
+
+
+
+
+

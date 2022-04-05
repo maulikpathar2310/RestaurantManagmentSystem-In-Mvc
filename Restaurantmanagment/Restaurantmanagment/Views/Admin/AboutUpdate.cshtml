@@ -1,0 +1,65 @@
+﻿@model Restaurantmanagment.Models.Entity.Aboutpage.Aboutus
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("AboutUpdate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section>
+        <div class="container">
+            <h4> <b>About Us Edit </b></h4>
+            <hr>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.aid)
+
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Image </label>
+                <div class="col-sm-6">
+                    <img src="~/assets/img/About/@Model.image" width="50" height="50" />
+                    <input type="file" name="file" />
+                    @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Name </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Role </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Fb Link </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.fb, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Insta Link </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.insta, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.insta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </section>   
+}

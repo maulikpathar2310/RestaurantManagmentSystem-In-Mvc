@@ -1,0 +1,89 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h5 class="h5 mb-2 text-gray-800"> User Register  </h5><br />
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">  User Register   <button class="btn btn-primary float-right"> @Html.ActionLink("New Record", "UserRegCreate", "Admin", new { @class = "collapse-item", @style = "color:white;" }) </button> </h6>
+
+        </div>
+        <div class="card-body">
+            <input type="text" class="form-control bg-light border-0 small" id="myInput"  onkeyup="searchFun()"  placeholder="Search for..." aria-label="Search"  aria-describedby="basic-addon2"><br />
+            <div class="table-responsive">
+                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+
+                    <tr>
+                        <th> id </th>
+                        <th> Name </th>
+                        <th> Email </th>
+                        <th> Password </th>
+                        <th> Phone No </th>
+                        <th> Action </th>
+                    </tr>
+
+                    @if (Model.User_Reglist.Count > 0)
+                    {
+                        var i = 0;
+                        foreach (var item in Model.User_Reglist)
+                        {
+
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.name</td>
+                                <td>@item.email</td>
+                                <td>@item.password</td>
+                                <td>@item.phone</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "UserRegUpdate", new { @id = item.uid }, new { @class = "btn btn-primary btn-sm" })
+                                    |
+                                    @Html.ActionLink("Delete", "UserRegDelete", new { @id = item.uid }, new { @class = "btn btn-primary btn-sm" })
+
+                                </td>
+                            </tr>
+
+
+                            i++;
+                        }
+                    }
+
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //Search Bar
+    const searchFun = () => {
+        let filter = document.getElementById('myInput').value.toUpperCase();
+        let myTable = document.getElementById('myTable');
+
+        let tr = myTable.getElementsByTagName('tr');
+        for (var i = 0; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName('td')[1];
+            if (td) {
+                let textvalue = td.textContent || td.innerHTML;
+                if (textvalue.toUpperCase().indexOf(filter) > -1) {
+                    tr[0].style.display = "";
+                }
+                else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+

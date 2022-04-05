@@ -1,0 +1,90 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/trontastic/jquery-ui.css" rel="stylesheet" />
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Welcome to <span>Restaurantly</span></h1>
+                <h2>Delivering great food for more than 18 years!</h2>
+
+                <div class="btns">
+                    <a href="@Url.Action("Gujaratithali","Home")" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
+                    <a href="@Url.Action("Booktable","Home")" class="btn-book animated fadeInUp scrollto">Book a Table</a>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
+                <a href="https://www.youtube.com/watch?v=u6BOC7CDUTQ" class="glightbox play-btn"></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Hero -->
+<!-- ======= Book A Table Section ======= -->
+<section id="book-a-table" class="book-a-table">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Reservation</h2>
+            <p>Book a Table</p>
+        </div>
+
+
+        @using (Html.BeginForm("Booktable", "Home", FormMethod.Post, new { @class = "php-email-form" }))
+        {
+            <div class="row">
+                <div class="col-lg-4 col-md-6 form-group">
+                    @Html.EditorFor(model => model.User_Bookobj.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter name", @id = "name" } })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    @Html.EditorFor(model => model.User_Bookobj.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email", @id = "email" } })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.email, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    @Html.EditorFor(model => model.User_Bookobj.phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter phone", @id = "phone" } })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.phone, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                    @Html.EditorFor(model => model.User_Bookobj.date, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter date", @id = "date" } })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.date, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                    @Html.EditorFor(model => model.User_Bookobj.time, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter time", @id = "time" } })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.time, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                    @Html.EditorFor(model => model.User_Bookobj.number, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter people no", @id = "number" } })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.number, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-8 col-md-10 form-group mt-3">
+                    @Html.TextAreaFor(model => model.User_Bookobj.description, new { @class = "form-control", @placeholder = "Enter Address", @id = "message" })
+                    @Html.ValidationMessageFor(model => model.User_Bookobj.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">Book a Table</button></div>
+        }
+
+    </div>
+</section>
+<!-- End Book A Table Section -->
+
+@section Scripts{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.13.1.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#date").datepicker();
+        });
+    </script>
+}

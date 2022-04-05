@@ -1,0 +1,94 @@
+﻿@model Restaurantmanagment.Models.Entity.Booktable
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/trontastic/jquery-ui.css" rel="stylesheet" />
+
+@using (Html.BeginForm("BooktableUpdate", "Home",  FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <section>
+        <div class="container">
+            <h4> <b> Book - Table List Edit </b></h4>
+            <hr>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Image </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Name </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Phone </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> date </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Time </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> No of people </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Description </label>
+                <div class="col-sm-6">
+                    @Html.TextAreaFor(model => model.description,  new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="">
+
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.13.1.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#date").datepicker();
+        });
+    </script>
+}
+

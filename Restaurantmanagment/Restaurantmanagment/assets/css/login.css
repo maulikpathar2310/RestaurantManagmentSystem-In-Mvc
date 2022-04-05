@@ -1,0 +1,35 @@
+﻿/* Coded with love by Mutiullah Samim */
+body {
+    margin: 0;
+    padding: 0;
+    background: url("/assets/img/menu/164.jpg");
+    background-position: center;
+    background-repeat:repeat; 
+    overflow: hidden;
+}
+
+.login {
+    background-color: #dddddddd;
+    width: 30%;
+    height: auto;
+    margin: 7% auto;
+    padding: 14px 10px;
+}
+
+.label{
+    padding:3px;
+   
+}
+.form-control {
+   border: none;
+   
+}
+
+@media screen and (max-width: 770px) {
+    .login {
+        background: #dddddddd;
+        width: 90%;
+        margin: 10% auto;
+        padding: 15px 10px;
+    }
+}

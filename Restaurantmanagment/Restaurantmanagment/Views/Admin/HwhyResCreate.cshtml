@@ -1,0 +1,47 @@
+﻿@model Restaurantmanagment.Models.Viewmodel.UserRegViewmodel
+
+@{
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("HwhyResCreate", "Admin", FormMethod.Post))
+{
+    <section>
+        <div class="container">
+            <h4> <b>Why Choose Our Restaurant</b></h4>
+            <hr>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 "> Number </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.HwhyRes_obj.wnumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HwhyRes_obj.wnumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 ">Title</label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.HwhyRes_obj.wtitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HwhyRes_obj.wtitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-md-4 ">Description</label>
+                <div class="col-sm-6">
+                    @Html.TextAreaFor(model => model.HwhyRes_obj.wdescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HwhyRes_obj.wdescription, "", new { @class = "text-danger" })
+                </div>
+            </div>            
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </section>  
+    <hr class="">
+}
+
+
+
